@@ -1,0 +1,79 @@
+<html>
+<head>
+
+<style>
+*{
+border:0;
+margin:0;
+padding:0;
+}
+#info{
+background-color:#333;
+font-family: Courier;
+font-size:10px;
+color:#fff;
+width:290px;
+height:20px;
+position: absolute;
+top:20px;
+left:120px;
+padding:2px;
+}
+</style>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript">
+//geocoding http://code.google.com/intl/es-ES/apis/maps/documentation/geocoding/index.html#GeocodingRequests
+//funciona con json!! http://maps.google.com/maps/api/geocode/json?address=elisava,barcelona&sensor=true
+
+	var map; //fuera del contexto de las funciones para que sea siempre accesible
+	var veces=0;
+
+	
+  function initialize() {
+    var latlng = new google.maps.LatLng(41, 2);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP   //MapTypeId.SATELLITE,
+    };
+     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	 google.maps.event.addListener(map, 'bounds_changed', function() {
+		mapUpdated();
+	});
+	
+	
+	 var geocoder = new google.maps.Geocoder();
+	   var address = 'Elisava, Barcelona, spain';
+
+	   if (geocoder) {
+		  geocoder.geocode({ 'address': address }, function (results, status) {
+			 if (status == google.maps.GeocoderStatus.OK) {
+			 var loc=results[0].geometry.location;
+			 //loc.lat()
+				console.log(loc);
+			 }
+			 else {
+				console.log("Geocoding failed: " + status);
+			 }
+		  });
+	   }   
+	
+  }
+
+
+  function mapUpdated(){
+	veces++;
+	bounds=map.getBounds();
+	//alert(bounds.toUrlValue(4));
+	$('#info').html(veces+" "+bounds.toUrlValue(4));
+	
+  }
+   
+</script>
+</head>
+<body onload="initialize()">
+  <div id="map_canvas" style="width:100%; height:100%"></div>
+  <div id="info">Cargando...</div>
+</body>
+</html>
