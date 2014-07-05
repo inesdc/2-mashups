@@ -6,99 +6,42 @@ if(isset($_GET['fruta'])==true){
  echo $fruta;}
 ?>
 
-<script>
-function getFlickrPhotos(map, searchLat, searchLon) {
+<script type="text/javascript">
+var apiKey = '[c8abcb2729a2b86f6c4a3492299cdeaf]'
+$.getJSON('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags='+'<?php echo $fruta?>'+'&extras=url_m,tags&format=json&nojsoncallback=1&per_page=5',
 
-  var FLICKR_API_KEY = 'c8abcb2729a2b86f6c4a3492299cdeaf';
-
-  var searchUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&";
-var fruta = "<php echo $fruta?>"
-  var searchReqParams = {
-    'api_key': FLICKR_API_KEY,
-    'tags': <?php echo $fruta?>,
-    'has_geo': true,
-    
-    'accuracy': 11,
-    'format': 'json',
-    'safe_search': 1,
-    'privacy_filter': 1,
-    'per_page': 10
-  }
-
-  $.ajax({
-    type: 'GET',
-    url : searchUrl,
-    dataType:'jsonp',
-    cache : true,
-    crossDomain : true,
-    jsonp: false,
-    jsonpCallback : 'jsonFlickrApi',
-    data: searchReqParams,
-    success: function(data) {
-      if (data.photos.photo.length > 0) {
-        document.write(data.photos);
-       
-      } else {
+function(data){
         
-      }
-      
-    }
-  })
-  .fail(function(jqXHR, textStatus, errorThrown) {
-    console.log('req failed');
-    console.log('textStatus: ', textStatus, ' code: ', jqXHR.status);
-  });
-  
-/*
-  function getAndMarkPhotos(photos) {
-    var numPhotos = photos.photo.length;
-    for(var i=0; i<numPhotos; i++) {
-      var photo = photos.photo[i];
-      getPhotoLocation(photo.id);
-    }
-  }
+//loop through the results with the following function
+$.each(data.photoset.photo, function(i,item){
+    var titulo = item.title;
+    var photo = item.url_m;
+    //build the url of the photo in order to link to it
+    var photoURL = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg'
+ 
+    //turn the photo id into a variable
+    var photoID = item.id;
+ 
+    //use another ajax request to get the geo location data for the image
+    $.getJSON('http://api.flickr.com/services/rest/?&amp;method=flickr.photos.geo.getLocation&amp;api_key=' + apikey + '&amp;photo_id=' + photoID + '&amp;format=json&amp;jsoncallback=?',
+    function(data){
+ 
+        //if the image has a location, build an html snippet containing the data
+        if(data.stat != 'fail') {
+            latitude = data.photo.location.latitude;
+            longitude = data.photo.location.longitude; 
 
-  function getPhotoLocation(photoId) {
-    var photoLocUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&";
-
-    var photoParams = {
-      'api_key': FLICKR_API_KEY,
-      'photo_id': photoId
-    }
-
-    $.ajax({
-      type: 'GET',
-      url : photoLocUrl,
-      async: false,
-      cache : true,
-      crossDomain : true,
-      dataType: 'xml',
-      data: photoParams,
-      success: function(data) {
-        var location = $(data).find('location')[0];
-        var photoLat = $(location).attr('latitude');
-        var photoLon = $(location).attr('longitude');
-        addOverlay(photoLat, photoLon, 'Flick Photo '+photoId, map);
-
-      }
-    })
-    .fail(function(jqXHR, textStatus, errorThrown) {
-      console.log('req failed ', jqXHR);
-      console.log('textStatus: ', textStatus, ' code: ', jqXHR.status);
+        }
+        
     });
-
-  }
-
-  function addOverlay(lat, lon, text, map) {
-    var myLatlng = new google.maps.LatLng(lat,lon);
-
-    var marker = new google.maps.Marker({
-      position: myLatlng,
-      title:text
-    });
-
-    marker.setMap(map);
-    //map.setCenter(myLatLng);
-  }
+    
 }
+
+var array_photo = new array ("titulo","photo");
+for (i=0;i<3;i++){ 
+    document.write(array_photo[i]) 
+    document.write("<br>") 
+}
+
+
 </script>
