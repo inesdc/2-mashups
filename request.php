@@ -37,7 +37,7 @@ $.each(data.photoset.photo, function(i,item){
     
 }
 
-var array_photo = new array ("titulo","photo");
+var array_photo = new array ("titulo","photo","latitude","longitude");
 for (i=0;i<3;i++){ 
     document.write(array_photo[i]) 
     document.write("<br>") 
