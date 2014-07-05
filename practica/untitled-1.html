@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Marker Animations</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+// The following example creates a marker in Stockholm, Sweden
+// using a DROP animation. Clicking on the marker will toggle
+// the animation between a BOUNCE animation and no animation.
+
+var barcelona = new google.maps.LatLng(41.3825, 2.176944);
+var markers = (41.491944, 2.138889);
+var marker;
+var map;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 9,
+    center: barcelona
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+  var LatLng = new google.maps.LatLng(41.491944, 2.138889)
+  marker = new google.maps.Marker({
+    map:map,
+    animation: google.maps.Animation.DROP,
+    position: LatLng
+  });
+  google.maps.event.addListener(marker, 'click', toggleBounce);
+}
+
+function toggleBounce() {
+
+  if (marker.getAnimation() != null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
