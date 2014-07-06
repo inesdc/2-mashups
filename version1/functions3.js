@@ -5,6 +5,8 @@ jQuery(function($) {
     document.body.appendChild(script);
 });
 
+
+
 function initialize() {
     var map;
     var bounds = new google.maps.LatLngBounds();
@@ -19,12 +21,31 @@ function initialize() {
 
 
     //llamada a la api de flickr
-    var tag="kiwi";
-    var apikey= "<?php echo $key;?>
+    var apikey= "c8abcb2729a2b86f6c4a3492299cdeaf";
+    var tag=tag;
         
-        //fotos ordenadas por interés
-     $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+apikey+"&tags="+tag+"&per_page=100&&has_geo=1&extras=date_taken,owner_name,views,geo,url_m&format=json&nojsoncallback=1",
+    //fotos ordenadas por interés
+     $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+apikey+"&tags="+tag+"&extras=url_m,tags&format=json&nojsoncallback=1&per_page=5",
         function(data){
+            console.log(data);
+            console.log("He encontrado fotos: ",data.photos.photo.length)
+            $.each(data.photos.photo, function(i,item) {
+          
+                var html="<img width='200' src='"+item.url_m+"'>"+item.title;
+           
+                //imagen en pequeño
+                var mini=item.url_m.replace(".jpg","_s.jpg");
+
+                createMarker(map,new google.maps.LatLng(
+                    item.latitude,
+                    item.longitude),
+                    mini,
+                    html);
+            });
+        });
+ }
+
+ /*
 
     var markers = [
         ['Foto-1', 'foto1.jpg', 41.383585, 2.181600, 'Sentado en las rodillas de papá'],
@@ -64,3 +85,5 @@ function initialize() {
     });
     
 }
+
+*/
