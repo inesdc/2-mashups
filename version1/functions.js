@@ -23,7 +23,24 @@ function initialize() {
      * marker[4]:       Descripción de la foto (se muestra en info_window como 'p')
      */
 
-    var fruta = "<?php echo $fruta?>"
+    var fruta = "<?php echo $fruta?>";
+    var key = "c8abcb2729a2b86f6c4a3492299cdeaf";
+    $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+key+"&tags="+fruta+"&per_page=500&&has_geo=1&extras=date_taken,owner_name,views,geo,url_m&format=json&nojsoncallback=1";
+
+    function(data) {
+        $.each(data.photos.photo, function(i,item) {
+            var url="<img width='100' src='"+item.url_m+"'>"+item.title;
+            var mini=item.url_m.replace(".jpg","_s.jpg");
+            createMarker(map,new google.maps.LatLng(
+                item.latitude,
+                item.longitude),
+                mini,
+                url);
+        });
+    }
+
+
+
     var markers = [
         ['Foto-1', 'foto1.jpg', 41.383585, 2.181600, 'Sentado en las rodillas de papá'],
         ['Foto-2', 'foto2.jpg', 41.400432, 2.140926, 'Jugando en casa de los tíos'],
