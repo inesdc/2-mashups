@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 75%; width: 75%; margin: 0 0 0 2em; }
+      #intro { padding-left: 2em;}
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyB3WDbJuoc6iqUEQ7ZkiQWHw6eqO5Os8Zc">
+    </script>
+    <script src="./flickrmap.js"></script>
+  </head>
+  <body>
+    <div id="intro">
+      <h3>A simple demo that shows how JSON, REST and a little JavaScript could be the start of a capable web application.</h3>
+      <label for"tag">Tag:</label>
+      <input id="tag" value="fruta" placeholder="fruta" />
+      
+      <button id="search">Search</button>
+      <div>
+        <em>Enter a fruit</em>
+      </div>
+    </div>
+    <div id="map-canvas"/>
+  </body>
+</html>
