@@ -32,7 +32,7 @@ if (isset ($fruta) and ($fruta!="")) {?>
 <form action="index.php" method="get">
 	<label name="tag">Fruit finder</label>
   <input type="text" name="tag" ></input>
-  <input type="submit">enviar</input>
+  <input type="submit"></input>
 </form>
 
 

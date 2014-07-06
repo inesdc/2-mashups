@@ -22,6 +22,8 @@ function initialize() {
      * marker[2]y[3]:   Lat y Long de la foto
      * marker[4]:       Descripción de la foto (se muestra en info_window como 'p')
      */
+
+    var fruta = "<?php echo $fruta?>"
     var markers = [
         ['Foto-1', 'foto1.jpg', 41.383585, 2.181600, 'Sentado en las rodillas de papá'],
         ['Foto-2', 'foto2.jpg', 41.400432, 2.140926, 'Jugando en casa de los tíos'],
