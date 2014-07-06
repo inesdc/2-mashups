@@ -2,12 +2,11 @@
 
 $fruta=""; // evitamos el warning de undefined variable
 
-if(isset($_GET['tag'])==true) { // sustituye el valor en $fruta si encuentra un valor válido por el atributo tag
- $fruta=$_GET['tag'];
-}
+if(isset($_GET['tag'])==true){ // sustituye el valor en $fruta si encuentra un valor válido por el atributo tag
+ $fruta=$_GET['tag'];}
 
 $key = 'c8abcb2729a2b86f6c4a3492299cdeaf';
-$uri="http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=".$key."&tags=".$fruta."&extras=url_m,tags&sort=date-posted-desc&format=json&nojsoncallback=1&per_page=5";
+$uri="http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=".$key."&tags=".$fruta."&extras=url_m,tags&format=json&nojsoncallback=1&per_page=5";
 
 
 
@@ -16,9 +15,6 @@ $uri="http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="styles.css">
-	<script>
-		var tag="<?php echo $fruta;?>"; // si no se pone aquí no funciona ¿?
-	</script>
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="functions.js" type="text/javascript"></script>
 </head>
@@ -28,13 +24,9 @@ $uri="http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="
 if (isset ($fruta) and ($fruta!="")) {?>
 <h1>Has buscado: <?php echo $fruta?></h1>
 <h2>Mapa de fotos en Flickr de <?php echo $fruta?></h2>
-<p id="test"></p>
 <div id="map_wrapper">
     <div id="map_canvas" class="mapping"></div>
 </div>
-<script>
-$('#test').html(txt);
-</script>
 <?php } else { ?>
 	
 <form action="index.php" method="get">

@@ -1,36 +1,9 @@
-
-    var tag=tag;
-    $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags="+tag+"&tagmode=any&format=json&jsoncallback=?",
-        function(data){
-         var txt="";
-          $.each(data.items, function(i,item){
-          //título elemento item.title
-            txt+=tag+"<a href='"+item.link+"'><img src='"+item.media.m+"'/></a>";
-     
-          });
-         
-          $('#test').html(txt);
-        });
-
-
-
-
-
-
-
-
-
-
-
-/*
 jQuery(function($) {
     // Asynchronously Load the map API 
     var script = document.createElement('script');
     script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
     document.body.appendChild(script);
 });
-
-
 
 function initialize() {
     var map;
@@ -42,41 +15,13 @@ function initialize() {
     // Display a map on the page
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     map.setTilt(45);
-
-
-
-    //llamada a la api de flickr
-    var apikey = "c8abcb2729a2b86f6c4a3492299cdeaf";
-    var tag = tag;
         
-    //fotos ordenadas por interés
-     $.getJSON("https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key="+apikey+"&tags="+tag+"&per_page=100&&has_geo=1&extras=date_taken,owner_name,views,geo,url_m&format=json&nojsoncallback=1",
-        function(data){
-            console.log(data);
-            console.log("He encontrado fotos: ",data.photos.photo.length);
-            var txt="";
-            for(var i=0; i<data.photos.length; i++) {
-                var txt = "photos.photos[url_m]"; 
-            } */
-        
-           /* $.each(data.photos.photo, function(i,item) {
-                txt+="<img src'"+item.url_m+"'>";
-                $('#map_canvas').html(txt);
-                
-                var mini = item.url_m.replace(".jpg","_s.jpg");
-                var markers = [item.title, mini, item.latitude, item.longitude, intem.owner_name],
-
-                createMarker(map,new google.maps.LatLng(
-                    item.latitude,
-                    item.longitude),
-                    mini,
-                    html);*/ /*
-            });
-
- }
-
- /*
-
+    // Multiple Markers
+    /* marker[0]:       titulo de la foto (se muestra en la info_window como 'h3')
+     * marker[1]:       url de la foto (se muestra en la info_window como 'img')
+     * marker[2]y[3]:   Lat y Long de la foto
+     * marker[4]:       Descripción de la foto (se muestra en info_window como 'p')
+     */
     var markers = [
         ['Foto-1', 'foto1.jpg', 41.383585, 2.181600, 'Sentado en las rodillas de papá'],
         ['Foto-2', 'foto2.jpg', 41.400432, 2.140926, 'Jugando en casa de los tíos'],
@@ -115,5 +60,3 @@ function initialize() {
     });
     
 }
-
-*/
