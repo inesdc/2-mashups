@@ -82,7 +82,7 @@ function initialize() {
     });
     var infoWindow = new google.maps.InfoWindow(), photo, i;
 
-    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    google.maps.event.addListener(marker, 'click', (function(photo, i) {
             return function() {
                 infoWindow.setContent('<div class="info_content"><h3>'+photo.title+'</h3><img src="'+photo.url_m'" width=100px></div>');
                 infoWindow.open(map, marker);

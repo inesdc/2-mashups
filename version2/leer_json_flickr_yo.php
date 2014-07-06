@@ -18,6 +18,24 @@ $data=file_get_contents($uri);
 $object = json_decode( $data ); // stdClass object
 
 
+$foto=$object->photos->photo;
+$url_foto=$foto->url_m;
+$titulo=$foto->title;
+$latitude=$foto->latitude;
+$longitude=$foto->longitude;
+
+foreach($object->photos->photo as $p){
+	$array_foto  = array(
+		"titulo"=>$titulo,
+		"foto"=>$url_foto,
+		"latitude"=>$latitude,
+		"longitude"=>$longitude
+		);
+}
+$count=
+$array_fotos[]=$array_foto;
+
+	# code...
 
 /*$uri2="https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=".$apikey."&tags=perro&location=barcelona&extras=url_m,tags&format=json&nojsoncallback=1&per_page=5";
 $data2=file_get_contents($uri2);
@@ -34,6 +52,7 @@ $object2 = json_decode( $data2 ); // stdClass object*/
 </head>
 <body>
 <div id="mapa">
+	<?php echo $array_fotos;?>
 <button id="etapa">etapa</button>
 <div id="photos" style="display:none; width:500px;">
 <?php
