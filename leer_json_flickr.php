@@ -19,9 +19,9 @@ $data=file_get_contents($uri);
 $object = json_decode( $data ); // stdClass object
 
 
-$uri2="https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=".$apikey."&tags=perro&location=barcelona&extras=url_m,tags&format=json&nojsoncallback=1&per_page=5";
+/*$uri2="https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=".$apikey."&tags=perro&location=barcelona&extras=url_m,tags&format=json&nojsoncallback=1&per_page=5";
 $data2=file_get_contents($uri2);
-$object2 = json_decode( $data2 ); // stdClass object
+$object2 = json_decode( $data2 ); // stdClass object*/
 
 
 

@@ -28,10 +28,10 @@ $object = json_decode( $data ); // stdClass object
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 <body>
-<div id="mapa">
+<div id="mapa" style="background-color:gray; width:100px ">
 	<?php 
 	$photos=$object->photos
-	echo $photos>
+	echo $photos->url_m>
 	?>
 </div>
 </body>

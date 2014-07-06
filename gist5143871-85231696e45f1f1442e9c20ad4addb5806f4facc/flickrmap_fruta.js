@@ -1,4 +1,6 @@
 function initialize(searchLat, searchLon) {
+   var searchLat = "38.8951";
+    var searchLon = "-77.0367";
   var mapOptions = {
     center: new google.maps.LatLng(searchLat, searchLon),
     zoom: 9,
@@ -30,7 +32,7 @@ function getFlickrPhotos(map, tag) {
     'lat': searchLat,
     'lon': searchLon,
     //'place_id': place.place_id,
- 
+    'accuracy': 11,
     'format': 'json',
     'safe_search': 1,
     'privacy_filter': 1,
@@ -117,8 +119,7 @@ function getFlickrPhotos(map, tag) {
 $(document).ready(function() {
   $('#warning').hide();
   $('#search').on('click', function() {
-    var searchLat = "38.8951".val();
-    var searchLon = "-77.0367".val();
+   
     var tag=$('#tag');
     var googleMap = initialize(searchLat, searchLon);
     getFlickrPhotos(googleMap, tag);

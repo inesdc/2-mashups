@@ -15,7 +15,7 @@ function(data){
 //loop through the results with the following function
 $.each(data.photoset.photo, function(i,item){
     var titulo = item.title;
-    var photo = item.url_m;
+    //var photo = item.url_m;
     //build the url of the photo in order to link to it
     var photoURL = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg'
  
@@ -28,8 +28,8 @@ $.each(data.photoset.photo, function(i,item){
  
         //if the image has a location, build an html snippet containing the data
         if(data.stat != 'fail') {
-            latitude = data.photo.location.latitude;
-            longitude = data.photo.location.longitude; 
+            var latitude = data.photo.location.latitude;
+            var longitude = data.photo.location.longitude; 
 
         }
         
@@ -37,7 +37,7 @@ $.each(data.photoset.photo, function(i,item){
     
 }
 
-var array_photo = new array ("titulo","photo","latitude","longitude");
+var array_photo = new array ("titulo","photoURL","latitude","longitude");
 for (i=0;i<4;i++){ 
     document.write(array_photo[i]) 
     document.write("<br>") 
@@ -45,3 +45,11 @@ for (i=0;i<4;i++){
 
 
 </script>
+<div>
+<div>
+  <script type="text/javascript">
+  for (i=0;i<4;i++){ 
+    document.write(array_photo[i]) 
+    document.write("<br>") 
+  </script>
+</div>
