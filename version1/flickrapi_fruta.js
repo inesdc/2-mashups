@@ -73,7 +73,7 @@ function getFlickrPhotos(map, tag) {
         var location = $(data).find('location')[0];
         var photoLat = $(location).attr('latitude');
         var photoLon = $(location).attr('longitude');
-        addOverlay(photoLat, photoLon, 'Flick Photo '+photoId, map);
+        addOverlay(photoLat, photoLon, 'Flick Photo '+photoId, map); //array
 
       }
     })
